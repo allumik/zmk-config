@@ -1,10 +1,13 @@
+// Import default behavior definitions
 #include <behaviors.dtsi>
+// Import standard keyboard keycode definitions
 #include <dt-bindings/zmk/keys.h>
-
+// Import experimental mouse emulation keycode definitions with timing settings
 #define ZMK_POINTING_DEFAULT_MOVE_VAL 1200  // default: 600
 #define ZMK_POINTING_DEFAULT_SCRL_VAL 20    // default: 10
 #include <dt-bindings/zmk/pointing.h>
 
+// Define layer indices for readability
 #define BASE 0
 #define NAVR 1
 #define MOUR 2
@@ -13,20 +16,31 @@
 
 / {
   behaviors {
+    // Custom hold-tap behavior for home row modifiers
     hm: homerow_mods {
       compatible = "zmk,behavior-hold-tap";
       #binding-cells = <2>;
+      // Time in milliseconds before the hold behavior is activated
       tapping-term-ms = <165>;
+      // Disables double-tap to hold auto-repeat
       quick-tap-ms = <0>;
+      // Forces tap resolution if a key is pressed within this window preceding the hold-tap
+      require-prior-idle-ms = <150>;
+      // Prioritizes tap behavior if the key is released before tapping-term-ms expires
       flavor = "tap-preferred";
+      // Binds the hold action to a key press and tap action to a key press
       bindings = <&kp>, <&kp>;
     };
+
+    // Custom hold-tap behavior for layer switching
     lt_custom: layer_tap {
       compatible = "zmk,behavior-hold-tap";
       #binding-cells = <2>;
       tapping-term-ms = <165>;
       quick-tap-ms = <0>;
-      flavor = "balanced";
+      require-prior-idle-ms = <150>;
+      flavor = "tap-preferred";
+      // Binds the hold action to momentary layer switch and tap action to a key press
       bindings = <&mo>, <&kp>;
     };
   };
