@@ -38,31 +38,32 @@
       #binding-cells = <2>;
       tapping-term-ms = <165>;
       quick-tap-ms = <0>;
-      require-prior-idle-ms = <150>;
-      flavor = "tap-preferred";
+      // Prioritizes holding the modifier
+      flavor = "balanced";
       // Binds the hold action to momentary layer switch and tap action to a key press
       bindings = <&mo>, <&kp>;
     };
   };
 
+  // combos limited only to base layer for now
   combos {
     compatible = "zmk,combos";
-    combo_opar { timeout-ms = <160>; key-positions = <13 14>; bindings = <&kp LPAR>; };
-    combo_cpar { timeout-ms = <160>; key-positions = <15 16>; bindings = <&kp RPAR>; };
-    combo_obra { timeout-ms = <160>; key-positions = <23 24>; bindings = <&kp LBKT>; };
-    combo_cbra { timeout-ms = <160>; key-positions = <25 26>; bindings = <&kp RBKT>; };
-    combo_gt { timeout-ms = <160>; key-positions = <5 6>; bindings = <&kp GT>; };
-    combo_lt { timeout-ms = <160>; key-positions = <3 4>; bindings = <&kp LT>; };
-    combo_minus { timeout-ms = <160>; key-positions = <4 14>; bindings = <&kp MINUS>; };
-    combo_equal { timeout-ms = <160>; key-positions = <5 15>; bindings = <&kp EQUAL>; };
-    combo_super_l { timeout-ms = <160>; key-positions = <13 23>; bindings = <&kp LGUI>; };
-    combo_super_r { timeout-ms = <160>; key-positions = <16 26>; bindings = <&kp LGUI>; };
-    combo_lalgr_l { timeout-ms = <160>; key-positions = <14 24>; bindings = <&kp RALT>; };
-    combo_lalgr_r { timeout-ms = <160>; key-positions = <15 25>; bindings = <&kp RALT>; };
-    combo_lalt_l { timeout-ms = <160>; key-positions = <12 22>; bindings = <&kp LALT>; };
-    combo_lalt_r { timeout-ms = <160>; key-positions = <17 27>; bindings = <&kp LALT>; };
-    combo_tab { timeout-ms = <160>; key-positions = <0 1>; bindings = <&kp TAB>; };
-    combo_del { timeout-ms = <160>; key-positions = <8 9>; bindings = <&kp DEL>; };
+    combo_opar { timeout-ms = <160>; key-positions = <13 14>; bindings = <&kp LPAR>; layers = <BASE>; };
+    combo_cpar { timeout-ms = <160>; key-positions = <15 16>; bindings = <&kp RPAR>; layers = <BASE>; };
+    combo_obra { timeout-ms = <160>; key-positions = <23 24>; bindings = <&kp LBKT>; layers = <BASE>; };
+    combo_cbra { timeout-ms = <160>; key-positions = <25 26>; bindings = <&kp RBKT>; layers = <BASE>; };
+    combo_gt { timeout-ms = <160>; key-positions = <5 6>; bindings = <&kp GT>; layers = <BASE>; };
+    combo_lt { timeout-ms = <160>; key-positions = <3 4>; bindings = <&kp LT>; layers = <BASE>; };
+    combo_minus { timeout-ms = <160>; key-positions = <4 14>; bindings = <&kp MINUS>; layers = <BASE>; };
+    combo_equal { timeout-ms = <160>; key-positions = <5 15>; bindings = <&kp EQUAL>; layers = <BASE>; };
+    combo_super_l { timeout-ms = <160>; key-positions = <13 23>; bindings = <&kp LGUI>; layers = <BASE>; };
+    combo_super_r { timeout-ms = <160>; key-positions = <16 26>; bindings = <&kp LGUI>; layers = <BASE>; };
+    combo_lalgr_l { timeout-ms = <160>; key-positions = <14 24>; bindings = <&kp RALT>; layers = <BASE>; };
+    combo_lalgr_r { timeout-ms = <160>; key-positions = <15 25>; bindings = <&kp RALT>; layers = <BASE>; };
+    combo_lalt_l { timeout-ms = <160>; key-positions = <12 22>; bindings = <&kp LALT>; layers = <BASE>; };
+    combo_lalt_r { timeout-ms = <160>; key-positions = <17 27>; bindings = <&kp LALT>; layers = <BASE>; };
+    combo_tab { timeout-ms = <160>; key-positions = <0 1>; bindings = <&kp TAB>; layers = <BASE>; };
+    combo_del { timeout-ms = <160>; key-positions = <8 9>; bindings = <&kp DEL>; layers = <BASE>; };
   };
 
   keymap {
