@@ -3,49 +3,40 @@
 // Import standard keyboard keycode definitions
 #include <dt-bindings/zmk/keys.h>
 // Import experimental mouse emulation keycode definitions with timing settings
-#define ZMK_POINTING_DEFAULT_MOVE_VAL 1200  // default: 600
-#define ZMK_POINTING_DEFAULT_SCRL_VAL 20    // default: 10
+#define ZMK_POINTING_DEFAULT_MOVE_VAL 1200
+#define ZMK_POINTING_DEFAULT_SCRL_VAL 20
 #include <dt-bindings/zmk/pointing.h>
 
-// Define layer indices for readability
-#define BASE 0
-#define NAVR 1
-#define MOUR 2
-#define FUNL 3
-#define NSL  4
+#define BASE       0
+#define GAMEL      1
+#define GAMEPLUSL  2
+#define NAVR       3
+#define MOUR       4
+#define FUNL       5
+#define NSL        6
 
 / {
   behaviors {
-    // Custom hold-tap behavior for home row modifiers
     hm: homerow_mods {
       compatible = "zmk,behavior-hold-tap";
       #binding-cells = <2>;
-      // Time in milliseconds before the hold behavior is activated
       tapping-term-ms = <150>;
-      // Disables double-tap to hold auto-repeat
       quick-tap-ms = <0>;
-      // Forces tap resolution if a key is pressed within this window preceding the hold-tap
       require-prior-idle-ms = <100>;
-      // Prioritizes tap behavior if the key is released before tapping-term-ms expires
       flavor = "tap-preferred";
-      // Binds the hold action to a key press and tap action to a key press
       bindings = <&kp>, <&kp>;
     };
 
-    // Custom hold-tap behavior for layer switching
     lt_custom: layer_tap {
       compatible = "zmk,behavior-hold-tap";
       #binding-cells = <2>;
       tapping-term-ms = <150>;
       quick-tap-ms = <0>;
-      // Prioritizes holding the modifier
       flavor = "balanced";
-      // Binds the hold action to momentary layer switch and tap action to a key press
       bindings = <&mo>, <&kp>;
     };
   };
 
-  // combos limited only to base layer for now
   combos {
     compatible = "zmk,combos";
     combo_opar { timeout-ms = <160>; key-positions = <13 14>; bindings = <&kp LPAR>; layers = <BASE>; };
@@ -64,6 +55,8 @@
     combo_lalt_r { timeout-ms = <160>; key-positions = <17 27>; bindings = <&kp LALT>; layers = <BASE>; };
     combo_tab { timeout-ms = <160>; key-positions = <0 1>; bindings = <&kp TAB>; layers = <BASE>; };
     combo_del { timeout-ms = <160>; key-positions = <8 9>; bindings = <&kp DEL>; layers = <BASE>; };
+    combo_gamem_on { timeout-ms = <160>; key-positions = <32 33>; bindings = <&to GAMEL>; layers = <BASE>; };
+    combo_gamem_off { timeout-ms = <160>; key-positions = <32 33>; bindings = <&to BASE>; layers = <GAMEL>; };
   };
 
   keymap {
@@ -75,6 +68,24 @@
         &kp A       &kp R       &kp S      &kp T      &kp G           &kp M        &kp N        &kp E        &kp I       &kp O
         &hm LCTRL Z &hm LSHFT X &kp C      &kp D      &kp V           &kp K        &kp H        &kp COMMA    &hm LSHFT DOT &hm LCTRL FSLH
                                 &lt_custom NAVR SPACE &lt_custom MOUR ESC  &lt_custom FUNL RET  &lt_custom NSL BSPC
+      >;
+    };
+
+    game_layer {
+      bindings = <
+        &kp TAB     &kp Q       &kp W      &kp E      &kp R           &kp T        &kp Y        &kp U        &kp I       &kp O
+        &kp LSHFT   &kp A       &kp S      &kp D      &kp F           &kp G        &kp H        &kp J        &kp K       &kp L
+        &kp LCTRL   &kp Z       &kp X      &kp C      &kp V           &kp B        &kp N        &kp M        &kp COMMA   &kp DOT
+                                &kp SPACE  &lt_custom GAMEPLUSL RET   &kp RET      &kp BSPC
+      >;
+    };
+
+    gameplus_layer {
+      bindings = <
+        &kp LALT    &trans      &trans     &trans     &kp N6          &kp PG_UP    &kp EQUAL    &kp GRAVE    &kp P       &kp SQT
+        &trans      &trans      &trans     &trans     &kp N5          &kp HOME     &kp MINUS    &kp SEMI     &kp L       &kp BSLH
+        &trans      &kp N1      &kp N2     &kp N3     &kp N4          &kp PG_DN    &kp RBKT     &kp LBKT     &kp DOT     &kp FSLH
+                                &none      &none                      &kp RET      &kp BSPC
       >;
     };
 
