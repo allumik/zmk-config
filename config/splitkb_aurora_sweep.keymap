@@ -76,7 +76,7 @@
         &kp TAB     &kp Q       &kp W      &kp E      &kp R           &kp T        &kp Y        &kp U        &kp I       &kp O
         &kp LSHFT   &kp A       &kp S      &kp D      &kp F           &kp G        &kp H        &kp J        &kp K       &kp L
         &kp LCTRL   &kp Z       &kp X      &kp C      &kp V           &kp B        &kp N        &kp M        &kp COMMA   &kp DOT
-                                &kp SPACE  &lt_custom GAMEPLUSL RET   &kp RET      &kp BSPC
+                                &kp SPACE  &lt_custom GAMEPLUSL ESC   &kp RET      &kp BSPC
       >;
     };
 
