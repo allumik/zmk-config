@@ -6,6 +6,8 @@
 #define ZMK_POINTING_DEFAULT_MOVE_VAL 1200
 #define ZMK_POINTING_DEFAULT_SCRL_VAL 20
 #include <dt-bindings/zmk/pointing.h>
+// Bluetooth profile keys (BT_CLR, BT_SEL)
+#include <dt-bindings/zmk/bt.h>
 
 #define BASE       0
 #define GAMEL      1
@@ -90,9 +92,12 @@
     };
 
     nav_layer {
+      // Left hand: Bluetooth. BT_CLR drops the active profile's bond (the
+      // host must then be re-paired), BT_CLR_ALL every profile's, BT_SEL n
+      // switches profile (each has its own address, so hosts see a new device).
       bindings = <
-        &none       &none       &none      &none      &none           &kp CAPS     &kp K_UNDO   &kp K_CUT    &kp K_COPY  &kp K_PASTE
-        &none       &none       &none      &none      &none           &kp K_AGAIN  &kp LEFT     &kp DOWN     &kp UP      &kp RIGHT
+        &bt BT_CLR   &bt BT_CLR_ALL &none      &none        &none           &kp CAPS     &kp K_UNDO   &kp K_CUT    &kp K_COPY  &kp K_PASTE
+        &bt BT_SEL 0 &bt BT_SEL 1   &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4  &kp K_AGAIN  &kp LEFT     &kp DOWN     &kp UP      &kp RIGHT
         &kp LCTRL   &kp LSHFT   &kp LALT   &kp LGUI   &kp RALT        &kp INS      &kp HOME     &kp PGDN     &kp PGUP    &kp END
                                 &none      &none                      &kp RET      &kp BSPC
       >;
